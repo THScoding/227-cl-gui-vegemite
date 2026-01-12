@@ -39,4 +39,8 @@ frame.pack()
 ping_btn = tk.Button(frame, text = "ping", command = do_command)
 ping_btn.pack()
 
+# Adds an output box to GUI.
+command_textbox = tksc.ScrolledText(frame, height=10, width=100)
+command_textbox.pack()
+
 root.mainloop()

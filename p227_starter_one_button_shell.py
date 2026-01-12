@@ -1,4 +1,4 @@
-import subprocess
+import subprocess as sp
 import tkinter as tk
 import tkinter.scrolledtext as tksc
 from tkinter import filedialog
@@ -9,7 +9,7 @@ def do_command():
     # Windows version to limit to 4 requests: command = ["ping", "localhost", "-n", "4"]
     # Mac version to limit to 4 requests:     command = ["ping", "localhost", "-n", "4"]
     
-    subprocess.run(command)
+    sp.run(command)
     
 root = tk.Tk()
 frame = tk.Frame(root)

@@ -45,7 +45,7 @@ def Submit():
     res=messagebox.askquestion("POP UP BOX",
         "Are you sure that's the right url?")
     if res == "yes":
-        do_command()
+        do_command("ping")
         
 # set up button to run the do_command function
 # CODE TO ADD

@@ -46,11 +46,9 @@ def Submit():
         "Are you sure that's the right url?")
     if res == "yes":
         do_command("ping")
-        
-# set up button to run the do_command function
-# CODE TO ADD
-# Makes the command button pass it's name to a function using lambda
-# CODE TO ADD
+    if res == "no":
+        print("Weenie")
+
 # Modifies the ping button parameters.
 ping_btn = tk.Button(frame, text="Check to see if a URL is up and active", 
     command=lambda:Submit(),

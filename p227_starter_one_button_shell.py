@@ -58,7 +58,7 @@ ping_btn = tk.Button(frame, text="Check to see if a URL is up and active",
     font=("comic sans", 12),
     bd=5, 
     relief="flat",
-    cursor="heart",
+    cursor="gumby",
     bg="white", activebackground="gray")
 ping_btn.pack() 
 
@@ -72,7 +72,7 @@ url_label = tk.Label(frame_URL, text="Enter a URL of interest: ",
     font=("comic sans", 14),
     bd=5, 
     relief=tk.FLAT, 
-    cursor="heart",
+    cursor="gumby",
     fg="black",
     bg="white")
 url_label.pack(side=tk.LEFT)

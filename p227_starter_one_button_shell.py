@@ -8,12 +8,35 @@ def retreive_url():
     url = url_entry.get()
     return url
 
-def do_command():
-    url = retreive_url()
-    command = ["ping", url]
-    # Windows version to limit to 4 requests: command = ["ping", "localhost", "-n", "4"]
-    # Mac version to limit to 4 requests:     command = ["ping", "localhost", "-n", "4"]
-    sp.run(command)
+# Modify the do_command function:
+# to use the new button as needed
+def do_command(command):
+    global command_textbox, url_entry
+
+    # If url_entry is blank, use localhost IP address 
+    url_val = url_entry.get()
+    if (len(url_val) == 0):
+        # url_val = "127.0.0.1"
+        url_val = "::1"
+    
+    command_textbox.delete(1.0, tk.END)
+    command_textbox.insert(tk.END, command + " working....\n")
+    command_textbox.update()
+
+    with sp.Popen(command + ' ' + url_val, stdout=sp.PIPE, bufsize=1, universal_newlines=True) as p:
+        for line in p.stdout:
+            command_textbox.insert(tk.END,line)
+            command_textbox.update()
+
+def mSave():
+  filename = asksaveasfilename(defaultextension='.txt',filetypes = (('Text files', '*.txt'),('Python files', '*.py *.pyw'),('All files', '*.*')))
+  if filename is None:
+    return
+  file = open (filename, mode = 'w')
+  text_to_save = command_textbox.get("1.0", tk.END)
+  
+  file.write(text_to_save)
+  file.close()
 
 root = tk.Tk()
 frame = tk.Frame(root)
@@ -22,7 +45,7 @@ frame.pack()
 # set up button to run the do_command function
 # CODE TO ADD
 # Makes the command button pass it's name to a function using lambda
-ping_btn = tk.Button(frame, text="Check to see if a URL is up and active", command=lambda:do_command())
+ping_btn = tk.Button(frame, text="Check to see if a URL is up and active", command = lambda:do_command("ping"))
 ping_btn.pack()
 
 # creates the frame with label for the text box

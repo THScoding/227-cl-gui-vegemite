@@ -50,8 +50,17 @@ def Submit():
 # set up button to run the do_command function
 # CODE TO ADD
 # Makes the command button pass it's name to a function using lambda
-ping_btn = tk.Button(frame, text="Check to see if a URL is up and active", command=lambda:Submit())
-ping_btn.pack()
+# CODE TO ADD
+# Modifies the ping button parameters.
+ping_btn = tk.Button(frame, text="Check to see if a URL is up and active", 
+    command=lambda:Submit(),
+    compound="center",
+    font=("comic sans", 12),
+    bd=0, 
+    relief="flat",
+    cursor="heart",
+    bg="white", activebackground="gray")
+ping_btn.pack() 
 
 # creates the frame with label for the text box
 frame_URL = tk.Frame(root, pady=10,  bg="black") # change frame color

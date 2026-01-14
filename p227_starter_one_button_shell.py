@@ -3,13 +3,12 @@ import tkinter as tk
 import tkinter.scrolledtext as tksc
 from tkinter import filedialog
 from tkinter.filedialog import asksaveasfilename
+from tkinter import messagebox
 
 def retreive_url():
     url = url_entry.get()
     return url
 
-# Modify the do_command function:
-# to use the new button as needed
 def do_command(command):
     global command_textbox, url_entry
 
@@ -42,10 +41,16 @@ root = tk.Tk()
 frame = tk.Frame(root)
 frame.pack()
 
+def Submit(): 
+    res=messagebox.askquestion("POP UP BOX",
+        "Are you sure that's the right url?")
+    if res == "yes":
+        do_command()
+        
 # set up button to run the do_command function
 # CODE TO ADD
 # Makes the command button pass it's name to a function using lambda
-ping_btn = tk.Button(frame, text="Check to see if a URL is up and active", command = lambda:do_command("ping"))
+ping_btn = tk.Button(frame, text="Check to see if a URL is up and active", command=lambda:Submit())
 ping_btn.pack()
 
 # creates the frame with label for the text box

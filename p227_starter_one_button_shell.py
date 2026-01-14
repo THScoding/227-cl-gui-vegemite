@@ -63,7 +63,7 @@ def make_new_frame():
     font=("comic sans", 12),
     bd=5, 
     relief="flat",
-    cursor="heart",
+    cursor="gumby",
     bg="white", activebackground="gray")
     ping_btn.pack()
 # set up button to run the do_command function

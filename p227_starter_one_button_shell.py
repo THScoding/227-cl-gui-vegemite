@@ -10,10 +10,9 @@ def retreive_url():
     return url
 
 def do_command(command):
-    global command_textbox, url_entry
+    global command_textbox, url_val
 
     # If url_entry is blank, use localhost IP address 
-    url_val = url_entry.get()
     if (len(url_val) == 0):
         # url_val = "127.0.0.1"
         url_val = "::1"
@@ -42,15 +41,37 @@ frame = tk.Frame(root)
 frame.pack()
 
 def Submit(): 
+    global url_val
     res=messagebox.askquestion("POP UP BOX",
         "Are you sure that's the right url?")
     if res == "yes":
-        do_command("ping")
-    if res == "no":
-        print("Weenie")
-
+        url_val = url_entry.get()
+        make_new_frame()
+        
+def make_new_frame():
+    global frame1, root1, command_textbox
+    frame.destroy()
+    root.destroy()
+    root1 = tk.Tk()
+    frame1 = tk.Frame(root1)
+    frame1.pack()
+    command_textbox = tksc.ScrolledText(frame1, height=10, width=100)
+    command_textbox.pack()
+    ping_btn = tk.Button(frame1, text="Ping", 
+    command=lambda:do_command("ping"),
+    compound="center",
+    font=("comic sans", 12),
+    bd=5, 
+    relief="flat",
+    cursor="heart",
+    bg="white", activebackground="gray")
+    ping_btn.pack()
+# set up button to run the do_command function
+# CODE TO ADD
+# Makes the command button pass it's name to a function using lambda
+# CODE TO ADD
 # Modifies the ping button parameters.
-ping_btn = tk.Button(frame, text="Check to see if a URL is up and active", 
+submit_btn = tk.Button(frame, text="Check to see if a URL is up and active", 
     command=lambda:Submit(),
     compound="center",
     font=("comic sans", 12),
@@ -58,7 +79,7 @@ ping_btn = tk.Button(frame, text="Check to see if a URL is up and active",
     relief="flat",
     cursor="gumby",
     bg="white", activebackground="gray")
-ping_btn.pack() 
+submit_btn.pack() 
 
 # creates the frame with label for the text box
 frame_URL = tk.Frame(root, pady=10,  bg="white") # change frame color
@@ -81,7 +102,5 @@ frame = tk.Frame(root,  bg="black") # change frame color
 frame.pack()
 
 # Adds an output box to GUI.
-command_textbox = tksc.ScrolledText(frame, height=10, width=100)
-command_textbox.pack()
 
 root.mainloop()

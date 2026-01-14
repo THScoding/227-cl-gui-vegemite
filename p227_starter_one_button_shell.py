@@ -9,11 +9,10 @@ def retreive_url():
     return url
 
 def do_command():
-    global url
+    url = retreive_url()
     command = ["ping", url]
     # Windows version to limit to 4 requests: command = ["ping", "localhost", "-n", "4"]
     # Mac version to limit to 4 requests:     command = ["ping", "localhost", "-n", "4"]
-    url = retreive_url()
     sp.run(command)
 
 root = tk.Tk()

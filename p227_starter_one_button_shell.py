@@ -68,7 +68,7 @@ def make_new_frame():
     relief="flat",
     cursor="gumby",
     bg="white", activebackground="gray")
-    save_btn.pack()
+    save_btn.pack(side="right")
     ping_btn = tk.Button(frame1, text = "Ping", 
     command = lambda:do_command("ping"),
     compound = "center",
@@ -88,7 +88,7 @@ def make_new_frame():
     relief = "flat",
     cursor = "gumby",
     bg = "white", activebackground = "gray")
-    tracer_btn.pack()
+    tracer_btn.pack(side="left")
 
 # Makes the command button pass it's name to a function using lambda
 # Modifies the ping button parameters.

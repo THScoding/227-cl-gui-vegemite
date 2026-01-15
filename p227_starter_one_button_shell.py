@@ -92,6 +92,17 @@ def make_new_frame():
     bg = "white", activebackground = "gray")
     tracer_btn.pack(side="left")
 
+    #NSlookup button
+    nslookup_btn = tk.Button(frame1, text = "Lookup", 
+    command = lambda:do_command("nslookup"),
+    compound = "center",
+    font = ("comic sans", 12),
+    bd = 5, 
+    relief = "flat",
+    cursor = "gumby",
+    bg = "white", activebackground = "gray")
+    nslookup_btn.pack(side="left")
+
 # Makes the command button pass it's name to a function using lambda
 # Modifies the ping button parameters.
 submit_btn = tk.Button(frame, text="Check to see if a URL is up and active", 

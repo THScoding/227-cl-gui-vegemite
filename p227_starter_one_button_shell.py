@@ -69,6 +69,8 @@ def make_new_frame():
     cursor="gumby",
     bg="white", activebackground="gray")
     save_btn.pack(side="right")
+
+    #Ping button
     ping_btn = tk.Button(frame1, text = "Ping", 
     command = lambda:do_command("ping"),
     compound = "center",

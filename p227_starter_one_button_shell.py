@@ -5,6 +5,9 @@ from tkinter import filedialog
 from tkinter.filedialog import asksaveasfilename
 from tkinter import messagebox
 
+options = {"ipconfig" : "1",
+          "netstat" : "2"}
+i=0
 def retreive_url():
     url = url_entry.get()
     return url
@@ -42,12 +45,13 @@ frame = tk.Frame(root)
 frame.pack()
 
 def Submit(): 
-    global url_val
+    global url_val, choice
     res = messagebox.askquestion("POP UP BOX",
         "Are you sure that's the right url?")
     if res == "yes":
         url_val = url_entry.get()
         make_new_frame()
+        choice = {radio_var.get()}
         
 def make_new_frame():
     global frame1, root1, command_textbox
@@ -134,6 +138,17 @@ url_entry.pack(side = tk.LEFT)
 
 frame = tk.Frame(root,  bg= "black") # change frame color
 frame.pack()
+
+radio_var = tk.StringVar(value="ipconfig")
+for (text, value) in options.items():
+    i = i + 1
+    if (i%2==0):
+        sides = "right"
+    else:
+        sides = "left"
+    tk.Radiobutton(frame, text = text, 
+                value = value, indicator = 0,
+                background = "light blue").pack(side=sides)
 
 # Adds an output box to GUI.
 

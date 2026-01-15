@@ -9,6 +9,7 @@ def retreive_url():
     url = url_entry.get()
     return url
 
+# set up button to run the do_command function
 def do_command(command):
     global command_textbox, url_val
 
@@ -75,10 +76,8 @@ def make_new_frame():
     cursor = "gumby",
     bg = "white", activebackground = "gray")
     ping_btn.pack()
-# set up button to run the do_command function
-# CODE TO ADD
+
 # Makes the command button pass it's name to a function using lambda
-# CODE TO ADD
 # Modifies the ping button parameters.
 submit_btn = tk.Button(frame, text="Check to see if a URL is up and active", 
     command = lambda:Submit(),

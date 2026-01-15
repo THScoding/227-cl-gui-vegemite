@@ -57,6 +57,23 @@ def make_new_frame():
     frame1.pack()
     command_textbox = tksc.ScrolledText(frame1, height=10, width=100)
     command_textbox.pack()
+    save_btn = tk.Button(frame1, text="Save", 
+    command=mSave,
+    compound="center",
+    font=("comic sans", 12),
+    bd=5, 
+    relief="flat",
+    cursor="gumby",
+    bg="white", activebackground="gray")
+    save_btn.pack()
+    ping_btn = tk.Button(frame1, text="Ping", 
+    command=lambda:do_command("ping"),
+    compound="center",
+    font=("comic sans", 12),
+    bd=5, 
+    relief="flat",
+    cursor="gumby",
+    bg="white", activebackground="gray")
     ping_btn = tk.Button(frame1, text = "Ping", 
     command = lambda:do_command("ping"),
     compound = "center",

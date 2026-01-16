@@ -1,0 +1,36 @@
+import tkinter as tk
+
+def show_choice():
+    """Function to be called when the 'Submit' button is clicked."""
+    # Use .get() on the shared variable 'v' to get the current value
+    selected_option = v.get()
+    if selected_option:
+        result_label.config(text=f"Selected option: {selected_option}")
+    else:
+        result_label.config(text="No option selected yet.")
+
+# --- Main application setup ---
+root = tk.Tk()
+root.title("Radio Button Example")
+root.geometry("300x150")
+
+# 1. Create a shared variable (StringVar is generally flexible)
+v = tk.StringVar(value="None") # Set a default value if needed
+
+# 2. Create Radio Buttons
+# Associate them all with the 'v' variable
+# Each has a unique 'value'
+tk.Radiobutton(root, text="Option A", variable=v, value="A").pack(anchor=tk.W)
+tk.Radiobutton(root, text="Option B", variable=v, value="B").pack(anchor=tk.W)
+tk.Radiobutton(root, text="Option C", variable=v, value="C").pack(anchor=tk.W)
+
+# 3. Create a Button to trigger the retrieval function
+submit_button = tk.Button(root, text="Submit", command=show_choice)
+submit_button.pack(pady=10)
+
+# Label to display the result
+result_label = tk.Label(root, text="No option selected yet.")
+result_label.pack(pady=5)
+
+# Start the Tkinter event loop
+root.mainloop()

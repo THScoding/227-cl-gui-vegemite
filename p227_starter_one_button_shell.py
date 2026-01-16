@@ -5,8 +5,8 @@ from tkinter import filedialog
 from tkinter.filedialog import asksaveasfilename
 from tkinter import messagebox
 
-options = {"ipconfig" : "1",
-          "netstat" : "2"}
+options = {"ipconfig" : "ipconfig",
+          "netstat" : "netstat"}
 i=0
 def retreive_url():
     url = url_entry.get()
@@ -20,6 +20,9 @@ def do_command(command):
     if (len(url_val) == 0):
         # url_val = "127.0.0.1"
         url_val = "::1"
+        
+        if command is "ipconfig": 
+            url_val =""
     
     command_textbox.delete(1.0, tk.END)
     command_textbox.insert(tk.END, command + " working....\n")
@@ -47,14 +50,18 @@ frame.pack()
 def Submit(): 
     global url_val, choice
     res = messagebox.askquestion("POP UP BOX",
+        "If no choice is made for radiobuttons, ip config is chosen.              "
         "Are you sure that's the right url?")
     if res == "yes":
         url_val = url_entry.get()
+        choice = str({radio_var.get()})
+        choice=choice[:-2]
+        choice=choice[2:]
+        print(choice)
         make_new_frame()
-        choice = {radio_var.get()}
         
 def make_new_frame():
-    global frame1, root1, command_textbox
+    global frame1, root1, command_textbox, choice
     frame.destroy()
     root.destroy()
     root1 = tk.Tk()
@@ -106,6 +113,17 @@ def make_new_frame():
     cursor = "gumby",
     bg = "white", activebackground = "gray")
     nslookup_btn.pack(side="left")
+    
+    #Either button button
+    choice_btn = tk.Button(frame1, text = choice, 
+    command = lambda:do_command(choice),
+    compound = "center",
+    font = ("comic sans", 12),
+    bd = 5, 
+    relief = "flat",
+    cursor = "gumby",
+    bg = "white", activebackground = "gray")
+    choice_btn.pack(side="left")
 
 # Makes the command button pass it's name to a function using lambda
 # Modifies the ping button parameters.
@@ -146,9 +164,8 @@ for (text, value) in options.items():
         sides = "right"
     else:
         sides = "left"
-    tk.Radiobutton(frame, text = text, 
-                value = value, indicator = 0,
-                background = "light blue").pack(side=sides)
+    tk.Radiobutton(frame, text = text, value = value, variable=radio_var, indicator = 0,background = "light blue").pack(side=sides)
+    
 
 # Adds an output box to GUI.
 
